@@ -1,1 +1,1 @@
-React Native Project feature Authentication, Navigation, Modals and Redux
+React Native Project featuring Authentication with Firebase, Navigation, Modals and Redux
