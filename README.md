@@ -1,0 +1,1 @@
+React Native Project feature Authentication, Navigation, Modals and Redux
