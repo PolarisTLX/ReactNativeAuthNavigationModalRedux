@@ -66,7 +66,7 @@ const loginUserSuccess = (dispatch, user) => {
 
   // now that user is logged in, 
   // this is how to navigate to our <Scene> that we gave key="employeeList":
-  Actions.employeeList();
+  Actions.main();
 };
 
 const loginUserFail = (dispatch) => {
