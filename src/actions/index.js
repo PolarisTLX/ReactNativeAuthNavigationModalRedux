@@ -43,6 +43,8 @@ export const loginUser = ({ email, password }) => {
     // the fact that we can have this 'dispatch' and manually call ONLY AFTER the '.then' is what makes redux thunk work in asynchronous fasion:
       .then(user => loginUserSuccess(dispatch, user))
       .catch(() => {
+        console.log("'catch' case was triggered - good to keep this log here to debug the successful 'then' case");
+        
         firebase.auth().createUserWithEmailAndPassword(email, password)
           .then(user => loginUserSuccess(dispatch, user))
           .catch(() => loginUserFail(dispatch));
