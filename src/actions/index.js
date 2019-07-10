@@ -3,7 +3,8 @@ import {
   EMAIL_CHANGED, 
   PASSWORD_CHANGED,
   LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAIL
+  LOGIN_USER_FAIL,
+  LOGIN_USER
 } from './types';
 
 export const emailChanged = (text) => {
@@ -39,6 +40,8 @@ export const passwordChanged = (text) => {
 
 export const loginUser = ({ email, password }) => {
   return (dispatch) => {
+    dispatch({ type: LOGIN_USER });
+
     firebase.auth().signInWithEmailAndPassword(email, password)
     // the fact that we can have this 'dispatch' and manually call ONLY AFTER the '.then' is what makes redux thunk work in asynchronous fasion:
       .then(user => loginUserSuccess(dispatch, user))
