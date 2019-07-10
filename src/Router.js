@@ -18,6 +18,7 @@ const RouterComponent = () => {
             title="Employee List"
             rightTitle="Add"
             onRight={() => Actions.employeeCreate()}
+            initial  //the first scene out of this 'main' group of scenes
           />
           <Scene key="employeeCreate" component={EmployeeCreate} title="Create New Employee" />
           <Scene key="employeeDetail" title="Employee Detail" />
