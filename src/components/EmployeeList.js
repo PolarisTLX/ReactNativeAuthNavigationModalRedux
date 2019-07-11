@@ -1,7 +1,9 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Text, ListView } from 'react-native';
 import { employeesFetch } from '../actions';
+import ListItem from './ListItem';
 
 
 class EmployeeList extends Component {
@@ -35,24 +37,38 @@ class EmployeeList extends Component {
   }
 
   render() {
-    return (
-      // DEPRECATED!!!
-      <ListView
-        enableEmptySections
-        dataSource={this.dataSource}
-        renderRow={this.renderRow}
-      />
 
-      // hard coded examples:
+    console.log(this.props);
+    
+
+    return (
       <View>
-        <Text>Employee List</Text>
-        <Text>Employee List</Text>
-        <Text>Employee List</Text>
-        <Text>Employee List</Text>
-        <Text>Employee List</Text>
+        {/* DEPRECATED!!! */}
+        <ListView
+          enableEmptySections
+          dataSource={this.dataSource}
+          renderRow={this.renderRow}
+        />
+
+        {/* hard coded examples: */}
+        <View>
+          <Text>Employee List</Text>
+          <Text>Employee List</Text>
+          <Text>Employee List</Text>
+          <Text>Employee List</Text>
+          <Text>Employee List</Text>
+        </View>
       </View>
     );
   }
 }
+
+const mapStateToProps = state => {
+  const employees = _.map(state.employees, (val, uid) =>  {
+    return { ...val, uid }; // result: { id: '3f7fd4', name: 'Jane', shift: 'Monday' }
+  });
+
+  return { employees };
+};
  
-export default connect(null, { employeesFetch })(EmployeeList);
+export default connect(mapStateToProps, { employeesFetch })(EmployeeList);
