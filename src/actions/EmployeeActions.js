@@ -3,7 +3,8 @@ import { Actions } from 'react-native-router-flux';
 
 import {
   EMPLOYEE_UPDATE,
-  EMPLOYEE_CREATE
+  EMPLOYEE_CREATE,
+  EMPLOYEES_FETCH_SUCCESS
 } from './types';
 
 export const employeeUpdate = ({ prop, value }) => {
@@ -36,6 +37,21 @@ export const employeeCreate = ({ name, phone, shift }) => {
       .then(() => {
         dispatch({ type: EMPLOYEE_CREATE });
         Actions.employeeList({ type: 'reset' });
+      });
+  };
+};
+
+// get data / employees from online Firebase database, if it was working:
+export const employeesFetch = () => {
+
+  const { currentUser } = firebase.auth();
+
+  return (dispatch) => {
+    firebase.database().red(`/users/${currentUser.uid}/employees`)
+    // some firebase voodoo / magic commands here:
+    // snapshot is an object that describes the data
+      .on('value', snapshot => {
+        dispatch({ type: EMPLOYEES_FETCH_SUCCESS, payload: snapshot.val() });
       });
   };
 };
