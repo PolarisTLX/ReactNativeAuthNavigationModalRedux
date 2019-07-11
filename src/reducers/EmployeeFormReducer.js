@@ -1,6 +1,7 @@
 import {
   EMPLOYEE_UPDATE,
-  EMPLOYEE_CREATE
+  EMPLOYEE_CREATE,
+  EMPLOYEE_SAVE_SUCCESS
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -23,6 +24,9 @@ export default (state = INITIAL_STATE, action) => {
       // '[action.payload.prop]' below gets converted into whatever gets passed
       return { ...state, [action.payload.prop]: action.payload.value };
     case EMPLOYEE_CREATE:
+      // reset form to be blank after an employee has been created/submitted:
+      return INITIAL_STATE;
+    case EMPLOYEE_SAVE_SUCCESS:
       // reset form to be blank after an employee has been created/submitted:
       return INITIAL_STATE;
     default:
