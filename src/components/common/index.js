@@ -8,5 +8,6 @@ export * from './CardSection';
 export * from './Header';
 export * from './Input';
 export * from './Spinner';
+export * from './ModalConfirm';
 
 // the export statement from those files must also be changed, see those files

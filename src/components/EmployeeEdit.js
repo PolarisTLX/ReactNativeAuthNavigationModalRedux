@@ -4,9 +4,11 @@ import { connect } from 'react-redux';
 import Communications from 'react-native-communications';
 import { Picker, Text } from 'react-native';
 import { employeeUpdate, employeeSave } from '../actions';
-import { Card, CardSection, Input, Button } from './common';
+import { Card, CardSection, Input, Button, ModalConfirm } from './common';
 
 class EmployeeEdit extends Component {
+
+  state = { showModal: false };
 
   // to utilize the existing employee details to this form from the employee that gets passed to here:
   // pass this employee object, and it's key:value pairs, to the reducer
@@ -78,6 +80,18 @@ class EmployeeEdit extends Component {
             Send Schedule by SMS
           </Button>
         </CardSection>
+
+        <CardSection>
+          <Button onPress={() => this.setState({ showModal: !this.state.showModal })}>
+            Delete Employee
+          </Button>
+        </CardSection>
+
+        <ModalConfirm
+          visible={this.state.showModal}
+        >
+          Are you sure you want to delete this?
+        </ModalConfirm>
       </Card>
     );
   }
